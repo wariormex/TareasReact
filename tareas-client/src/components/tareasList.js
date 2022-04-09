@@ -64,11 +64,48 @@ const TareasList = () =>{
             .then(response => response.json())
             .then(dataResponse =>{
                 //setTareas([...tareas, dataResponse.data]);
+                //setTareas([...tareas, ...tareas]);
                 //setShowForm(false);
+            })
+            .then(() =>{
+                getTareas()
             });
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const updateTarea = (data) => {
+        try {
+            console.log(data)
+            fetch(`http://localhost:4000/tareas/${data._id}`, {
+                method: 'PUT',
+                headers:{
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                    
+            })
+            .then(response => response.json())
+            .then(dataResponse =>{
+                setTareas([...tareas, dataResponse.data]);
+                //setTareas([...tareas, ...tareas]);
+                setShowForm(false);
+            })
+            .then(() =>{
+                getTareas()
+            });
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getTareas = () =>{
+        fetch("http://localhost:4000/tareas")
+            .then((res) => res.json())
+            .then((data) => setTareas(data.data))
+            .catch((err) => console.log(`Error: ${err}`));
     }
 
     return(
@@ -78,7 +115,11 @@ const TareasList = () =>{
                     key = {index}
                     index = {index}
                     tarea = {tarea}
-                    onClickFn = {deleteTarea}
+                    onDeleteFn = {deleteTarea}
+                    onUpdateFn = {updateTarea}
+                    formState = {showForm}
+                    
+                    
                 />   
             ))}
             <button className="new-btn"
