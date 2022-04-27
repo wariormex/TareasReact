@@ -1,6 +1,7 @@
 import {Form} from 'react-bootstrap'
 import {Button} from 'react-bootstrap'
 import { useState } from 'react';
+import Moment from "moment";
 
 const TareaUpdateForm = ({onClickFn, tareaToUpdate, closeFormFn}) => {
   const [id,setId] = useState(tareaToUpdate.id);
@@ -55,7 +56,7 @@ const TareaUpdateForm = ({onClickFn, tareaToUpdate, closeFormFn}) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicFechaEntrega">
             <Form.Label>Fecha de Entrega:  </Form.Label>
-            <Form.Control type="text" placeholder={fechaEntrega} value = {fechaEntrega} onFocus={(e) => e.target.type = "date"} onBlur={(e) => (e.target.type = "text")} onChange={(txt) => setFechaEntrega(txt.target.value)}/>
+            <Form.Control type="text" placeholder={Moment(fechaEntrega).format("DD-MM-YYYY")} value = {Moment(fechaEntrega).format("DD-MM-YYYY")} onFocus={(e) => e.target.type = "date"} onBlur={(e) => (e.target.type = "text")} onChange={(txt) => setFechaEntrega(txt.target.value)}/>
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit

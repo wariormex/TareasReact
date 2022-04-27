@@ -30,8 +30,8 @@ const Tarea = ({tarea, onDeleteFn, onUpdateFn, formState, formStateFn}) => {
             <h5>{`Id: ${tarea.id}`}</h5>
             <h5>{`Materia: ${tarea.materia}`}</h5>
             <h5>{`Puntos: ${tarea.puntos}`}</h5>
-            <h5>{`Fecha de Entrega: ${Moment(tarea.fechaEntrega).format("DD-MM-YYYY hh:mm:ss a")}`}</h5>
-            <h5>{`Fecha de Creacion: ${Moment(tarea.fechaCreacion).format("DD-MM-YYYY hh:mm:ss a")}`}</h5>
+            <h5>{`Fecha de Entrega: ${Moment(tarea.fechaEntrega).format("DD-MM-YYYY")}`}</h5>
+            <h5>{`Fecha de Creacion: ${Moment(tarea.fechaCreacion).format("DD-MM-YYYY")}`}</h5>
             <button className="new-btn" onClick={clickDeleteTarea}>{"Borrar Tarea"}</button>
             <button className="new-btn" onClick={clickUpdateTarea}>{showForm ? "Cerrar" : "Actualizar Tarea"}</button>
             {showForm && <TareaUpdateForm onClickFn={onUpdateFn} tareaToUpdate = {tarea} closeFormFn = {clickUpdateTarea}></TareaUpdateForm>}
