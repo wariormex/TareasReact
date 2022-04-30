@@ -1,8 +1,11 @@
 import {useEffect, userEffect, useState} from "react";
 import Tarea from "./tarea.js"
 import TareaForm from "./tareaForm.js"
+// hh:mm:ss a
 
 const TareasList = () =>{
+
+    const API_URL = "http://52.15.92.250:4000/tareas"
     /*const lista = [
         {
             name: "tarea1",
@@ -25,7 +28,7 @@ const TareasList = () =>{
     const [showForm, setShowForm] = useState(false);
 
     useEffect(()=>{
-        fetch("http://localhost:4000/tareas")
+        fetch(API_URL) // "http://localhost:4000/tareas"
             .then((res) => res.json())
             .then((data) => setTareas(data.data))
             .catch((err) => console.log(`Error: ${err}`));
@@ -33,7 +36,7 @@ const TareasList = () =>{
 
     const createTarea = (data) => {
         try {
-            fetch("http://localhost:4000/tareas", {
+            fetch(API_URL, {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json',
@@ -53,7 +56,7 @@ const TareasList = () =>{
     const deleteTarea = (data) => {
         try {
             console.log(data)
-            fetch(`http://localhost:4000/tareas/${data}`, {
+            fetch(API_URL + `/${data}`, {
                 method: 'DELETE'/*,
                 headers:{
                     'Content-Type': 'application/json',
@@ -78,7 +81,7 @@ const TareasList = () =>{
     const updateTarea = (data) => {
         try {
             console.log(data)
-            fetch(`http://localhost:4000/tareas/${data._id}`, {
+            fetch(API_URL + `/${data._id}`, {
                 method: 'PUT',
                 headers:{
                     'Content-Type': 'application/json',
@@ -102,7 +105,7 @@ const TareasList = () =>{
     }
 
     const getTareas = () =>{
-        fetch("http://localhost:4000/tareas")
+        fetch(API_URL) //3.139.91.24 //"http://localhost:4000/tareas"
             .then((res) => res.json())
             .then((data) => setTareas(data.data))
             .catch((err) => console.log(`Error: ${err}`));
